@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-	// Добавляем свои собственные свойства здесь, если они есть
 	children: string;
  }
 
