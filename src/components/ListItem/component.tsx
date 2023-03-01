@@ -1,9 +1,22 @@
 import React from 'react'
-import { ITodo } from '../../store/slices/todoSlice'
+import { changeStatus, ITodo } from '../../store/slices/todoSlice'
 
-const ListItem:React.FC<ITodo> = ({title, description, status}) => {
+import { useDispatch } from 'react-redux'
+
+const ListItem: React.FC<ITodo> = ({ id, title, description, status }) => {
+	const dispatch = useDispatch()
+	const handleOnChange = () => {
+		if (id) {
+			dispatch(changeStatus(id))
+		}
+	}
   return (
-	  <div >{ title}</div>
+	  <li>
+		  <div>{id}</div>
+		  <div>{title}</div>
+		  <div>{description}</div>
+		  <input type="checkbox" checked={status} onChange={handleOnChange} />
+	  </li>
   )
 }
 

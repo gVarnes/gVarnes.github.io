@@ -22,11 +22,19 @@ export const todoSlice = createSlice({
 	initialState,
 	reducers: {
 		addToDo: (state, action: PayloadAction<ITodo>) => {
-			// state.todos.push(action.payload)
-			state.todos.push({...action.payload,id:state.todos.length})
+			state.todos.push({
+				id: state.todos.length + 1,
+				...action.payload
+			})
 			console.log(current(state.todos))
 		},
-		changeStatus:(state)=>{}
+		changeStatus: (state, action:PayloadAction<number>) => {
+			const todo = state.todos.find(todo => todo.id === action.payload)
+			
+			if (todo) {
+				todo.status = !todo.status
+			}
+		}
 	}
 })
 

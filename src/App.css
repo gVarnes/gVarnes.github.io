@@ -1,3 +1,19 @@
+ul {
+  list-style: none; 
+	display: inline-flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+li {
+  display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 50px;
+	padding: 0 40px;
+	background-color: rgba(71, 71, 71, 0.9);
+}
+
 .app{
   min-height: 100vh;
   background-color: rgba(182, 182, 182, 0.9);
