@@ -3,3 +3,9 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.inputRow{
+	flex-direction: row;
+	align-items: baseline;
+	gap: 10px;
+}

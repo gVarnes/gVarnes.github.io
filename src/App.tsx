@@ -8,11 +8,14 @@ import { useAppSelector } from './store/store';
 import { useDispatch } from 'react-redux';
 
 import { setIsOpen } from './store/slices/modalSlice';
+import ToDoModal from './components/ToDoModal';
 
 function App() {
   const { todos } = useAppSelector((state) => state.todo)
   const { isOpen } = useAppSelector((state) => state.modal)
   const dispatch = useDispatch()
+
+  const closeModal = ()=>{dispatch(setIsOpen(false))}
 
   return (
     <div className="app">
@@ -20,10 +23,8 @@ function App() {
         <ToDoForm />
         <ToDoList todos={todos} />
       </div>
-      <Modal isOpen={isOpen} onClose={()=>{dispatch(setIsOpen(false))}}>
-        <>
-          Lorem ipsum dolor sit amet.
-          </>
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <ToDoModal />
       </Modal>
     </div>
   );

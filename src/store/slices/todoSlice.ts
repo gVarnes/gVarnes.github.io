@@ -11,10 +11,16 @@ export interface ITodo {
 
 export interface ITodosState {
 	todos: ITodo[]
+	currentTodo?: ITodo
 }
 
 const initialState: ITodosState = {
-	todos : []
+	todos: [],
+	currentTodo: {
+		title: '',
+		description: '',
+		status:false
+	}
 }
 
 export const todoSlice = createSlice({
@@ -29,14 +35,26 @@ export const todoSlice = createSlice({
 		},
 		changeStatus: (state, action:PayloadAction<number>) => {
 			const todo = state.todos.find(todo => todo.id === action.payload)
-			
+
+			console.log(todo)
+
 			if (todo) {
 				todo.status = !todo.status
 			}
+
+			//Also, change the status of the current todo object so that when the modal is open, the status automatically changes
+			if (state.currentTodo && state.currentTodo.status !== undefined) {
+				if (todo?.id === state.currentTodo?.id) { 
+					state.currentTodo.status = !state.currentTodo.status
+				}
+			 }
+		},
+		setCurrentTodo: (state, action: PayloadAction<ITodo>) => {
+			state.currentTodo = action.payload
 		}
 	}
 })
 
-export const { addToDo, changeStatus } = todoSlice.actions
+export const { addToDo, changeStatus,setCurrentTodo } = todoSlice.actions
 
 export default todoSlice.reducer

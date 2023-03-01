@@ -1,0 +1,20 @@
+.modal {
+	min-width: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.modal *:not(label) {
+	margin: 0px 0px 20px 0px;
+}
+
+.title{
+	font-weight: 600;
+	align-self: center;
+}
+
+.description div {
+	font-weight: 600;
+}
