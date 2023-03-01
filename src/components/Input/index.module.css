@@ -9,3 +9,14 @@
 	align-items: baseline;
 	gap: 10px;
 }
+
+.error input{
+	border: 1.6px solid red;
+}
+
+.error span{
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	color: red;
+}

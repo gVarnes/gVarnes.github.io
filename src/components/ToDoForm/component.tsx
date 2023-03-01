@@ -6,12 +6,39 @@ import Button from '../Button'
 import { addToDo } from '../../store/slices/todoSlice'
 import { useDispatch } from 'react-redux'
 
+interface IValidationForm {
+	title: string,
+   description: string,
+}
+
+interface IValidationErrors {
+	title?: string;
+	description?: string;
+}
+ 
+const errorMessage = 'This field is empty'
+
+const validateForm = (values:IValidationForm) => {
+	let errors: IValidationErrors = {};
+
+	if (!values.title) {
+	  errors.title = errorMessage;
+	}
+
+	if (!values.description) {
+	  errors.description = errorMessage;
+	}
+
+	return errors;
+ };
+
 const ToDoForm = () => {
 	const [todo, setTodo] = useState({
 		title: '',
 		description: '',
 		status: false
 	})
+	const [errors, setErrors] = useState<IValidationErrors>({});
 	const dispatch = useDispatch()
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,14 +47,43 @@ const ToDoForm = () => {
 	
 	const onSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		dispatch(addToDo(todo))
+
+		const formErrors = validateForm(todo);
+    	setErrors(formErrors);
+
+		 if (Object.keys(formErrors).length === 0) {
+			 dispatch(addToDo(todo))
+			 setErrors({})
+		 }
 	}
 
 	return (
 		<form noValidate className={styles.form} onSubmit={onSubmit}>
-			<Input required name='title' onChange={handleChange}>Title:</Input>
-			<Input required name='description' onChange={handleChange}>Description:</Input>
-			<Button type='submit'>Create</Button>
+			<div className={styles.inputWrapper}>
+				<Input
+					error={!!errors.title}
+					name='title'
+					onChange={handleChange}
+					placeholder="Enter title"
+					errorMessage={errors.title}
+				>
+					Title:
+				</Input>
+			</div>
+			<div className={styles.inputWrapper}>
+				<Input 
+				error={!!errors.description}
+				name='description' 
+				onChange={handleChange} 
+				placeholder="Enter description"
+				errorMessage={errors.title}
+				>
+					Description:
+				</Input>
+			</div>
+			<div className={styles.button}>
+				<Button type='submit'>Create</Button>
+			</div>
 		</form>
   )
 }

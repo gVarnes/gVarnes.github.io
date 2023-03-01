@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { createPortal } from 'react-dom'
+import Button from '../Button';
 import styles from './index.module.css'
 
 interface IModal {
@@ -30,7 +31,7 @@ const Modal: React.FC<IModal> = ({ children, isOpen, onClose }) => {
 			<div className={styles.content}>
 				{children}
 				<div>
-					<button onClick={onClose}>close</button>
+					<Button type='button' onClick={onClose}>close</Button>
 				</div>
 			</div>
 		</>,

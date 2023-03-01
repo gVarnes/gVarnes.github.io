@@ -1,9 +1,19 @@
 .form{
 	display: flex;
-	align-items: flex-end;
+	align-items: baseline;
 	margin: 0px 0px 100px 0px;
 }
 
 .form label {
 	margin: 0px 40px 0px 0px;
+}
+
+.inputWrapper {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.button {
+	align-self: flex-end;
 }
