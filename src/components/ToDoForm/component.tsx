@@ -24,9 +24,9 @@ const ToDoForm = () => {
 	}
 
 	return (
-		<form className={styles.form} onSubmit={onSubmit}>
-			<Input name='title' onChange={handleChange}>Title:</Input>
-			<Input name='description' onChange={handleChange}>Description:</Input>
+		<form noValidate className={styles.form} onSubmit={onSubmit}>
+			<Input required name='title' onChange={handleChange}>Title:</Input>
+			<Input required name='description' onChange={handleChange}>Description:</Input>
 			<Button type='submit'>Create</Button>
 		</form>
   )

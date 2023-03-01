@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Modal from './components/Modal';
 import ToDoForm from './components/ToDoForm';
 import ToDoList from './components/ToDoList';
 
 import { useAppSelector } from './store/store';
 
 function App() {
-  const {todos} = useAppSelector((state)=> state.todo)
+  const { todos } = useAppSelector((state) => state.todo)
+  const [isOpen,setIsOpen] = useState(true)
 
   useEffect(() => {
     console.log(todos)
@@ -18,6 +20,11 @@ function App() {
         <ToDoForm />
         <ToDoList todos={todos} />
       </div>
+      <Modal isOpen={isOpen} onClose={()=>{setIsOpen(false)}}>
+        <>
+          Lorem ipsum dolor sit amet.
+          </>
+      </Modal>
     </div>
   );
 }
