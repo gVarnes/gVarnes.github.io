@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 
@@ -26,7 +26,6 @@ export const todoSlice = createSlice({
 				id: state.todos.length + 1,
 				...action.payload
 			})
-			console.log(current(state.todos))
 		},
 		changeStatus: (state, action:PayloadAction<number>) => {
 			const todo = state.todos.find(todo => todo.id === action.payload)
